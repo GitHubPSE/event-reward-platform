@@ -25,7 +25,9 @@ export class AppController {
   constructor(private readonly httpService: HttpService) {}
 
   // ✅ /api/events 처리
-  @All('events')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('OPERATOR', 'ADMIN')
+  @Post('events')
   async proxyEventsRoot(@Req() req: Request, @Res() res: Response) {
     return this.forwardRequest(req, res);
   }
