@@ -34,7 +34,7 @@ docker-compose up --build
 # 3.아래 주소에서 각 서비스 확인 가능
 1. Auth 서비스 (회원가입, 로그인) : http://localhost:3001 -> "Hello World!" 응답
 2. Gateway 서비스 (모든 API 진입점) : http://localhost:3000 -> 404 Not Found` (정상)
-3. Event 서비스 (직접 접근은 차단됨) : http://localhost:3002
+3. Event 서비스 (직접 접근은 차단됨) : http://localhost:3002 -> 비정상 접근입니다 (정상)
 ```
 
 ---
