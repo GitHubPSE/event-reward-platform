@@ -81,11 +81,11 @@ x-from-gateway: true
 ```
 ---
 
-### 4. 📝 이벤트 등록 (OPERATOR 권한 필요)
+### 4. 📝 이벤트 등록 (운영자, 관리자 권한 필요)
 ```
 POST http://localhost:3000/api/events
 Headers:
-Authorization: Bearer <OPERATOR 토큰>
+Authorization: Bearer <운영자 또는 관리자 토큰>
 x-from-gateway: true
 
 Body:
@@ -94,3 +94,59 @@ Body:
 “description”: “7일 연속 출석 시 보상 지급”
 }
 ```
+---
+
+### 5. 🔍 이벤트 전체 조회
+```
+GET http://localhost:3000/api/events
+Headers:
+Authorization: Bearer <Token>
+x-from-gateway: true
+```
+---
+
+### 6. 🧾 이벤트 상세 조회
+```
+GET http://localhost:3000/api/events/{id}
+Headers:
+Authorization: Bearer <Token>
+x-from-gateway: true
+```
+---
+
+### 7. 🎁 보상 요청
+```
+POST http://localhost:3000/api/rewards/requests/claim
+Headers:
+Authorization: Bearer <Token>
+x-from-gateway: true
+
+Body:
+{
+“userId”: “abc1234”,
+“eventId”: “<이벤트 ID>”
+}
+```
+---
+
+### 8. 🧾 내 보상 요청 이력 조회
+```
+GET http://localhost:3000/api/rewards/requests/my?userId=abc1234
+Headers:
+Authorization: Bearer <Token>
+x-from-gateway: true
+```
+---
+
+### 9. 🧾 전체 보상 요청 이력 조회 (ADMIN or AUDITOR)
+```
+GET http://localhost:3000/api/rewards/requests/all
+Headers:
+Authorization: Bearer <ADMIN or AUDITOR 토큰>
+x-from-gateway: true
+```
+---
+
+✅ `회원가입/로그인`은 `http://localhost:3001`에서 직접 호출합니다.  
+✅ 나머지 API는 반드시 `http://localhost:3000`(Gateway 서버)을 통해 호출해야 합니다.  
+❌ `http://localhost:3002`(event-server) 직접 접근 시 요청이 차단됩니다.
