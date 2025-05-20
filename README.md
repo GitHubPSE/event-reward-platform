@@ -37,3 +37,20 @@ docker-compose up --build
 3. Event 서비스 (직접 접근은 차단됨) : http://localhost:3002
 ```
 
+---
+
+## 🔍 API 테스트 방법
+Postman 또는 REST Client에서 아래 API들을 직접 테스트할 수 있습니다.
+---
+
+### 1. 🧑‍💻 회원가입
+```
+POST http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+“username”: “abc1234”,
+“password”: “pass1234”,
+“role”: “USER”
+}
+```
