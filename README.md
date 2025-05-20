@@ -54,3 +54,43 @@ Content-Type: application/json
 “role”: “USER”
 }
 ```
+---
+
+### 2. 🔐 로그인 (JWT 발급)
+```
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+“username”: “abc1234”,
+“password”: “pass1234”
+}
+- ✅ 성공 시 `accessToken` 발급됨
+- 이후 API 요청에 아래와 같이 헤더 추가
+Authorization: Bearer <Token> 
+x-from-gateway: true
+```
+---
+
+### 3. 📬 프로필 확인
+```
+GET http://localhost:3000/api/profile
+Headers:
+Authorization: Bearer <Token> 
+x-from-gateway: true
+```
+---
+
+### 4. 📝 이벤트 등록 (OPERATOR 권한 필요)
+```
+POST http://localhost:3000/api/events
+Headers:
+Authorization: Bearer <OPERATOR 토큰>
+x-from-gateway: true
+
+Body:
+{
+“title”: “출석 이벤트”,
+“description”: “7일 연속 출석 시 보상 지급”
+}
+```
