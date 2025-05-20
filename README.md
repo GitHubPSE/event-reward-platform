@@ -32,8 +32,8 @@ cd event-reward-platform
 docker-compose up --build
 
 # 3.아래 주소에서 각 서비스 확인 가능
-1. Auth 서비스 (회원가입, 로그인) : http://localhost:3001
-2. Gateway 서비스 (모든 API 진입점) : http://localhost:3000
+1. Auth 서비스 (회원가입, 로그인) : http://localhost:3001 -> "Hello World!" 응답
+2. Gateway 서비스 (모든 API 진입점) : http://localhost:3000 -> 404 Not Found` (정상)
 3. Event 서비스 (직접 접근은 차단됨) : http://localhost:3002
 ```
 
@@ -70,6 +70,13 @@ Content-Type: application/json
 Authorization: Bearer <Token> 
 x-from-gateway: true
 ```
+
+❓ x-from-gateway: true 헤더를 추가한 이유 : 
+
+✅ 이벤트 서버에 직접 접근하는 것을 방지하고, 반드시 게이트웨이(3000번 포트)를 통해서만 요청이 오도록 제한하기 위함입니다.
+
+하위 서비스에서는 이 헤더가 없는 요청은 “비정상 접근”으로 간주하고 차단합니다.
+ 
 ---
 
 ### 3. 📬 프로필 확인
