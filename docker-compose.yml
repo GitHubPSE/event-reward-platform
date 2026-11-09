@@ -19,6 +19,7 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/auth-db
       - PORT=3001
+      - JWT_SECRET=${JWT_SECRET:?.env 파일에 JWT_SECRET을 설정하세요}
 
   gateway-server:
     build: ./gateway-server
@@ -30,6 +31,7 @@ services:
     environment:
       - AUTH_URL=http://auth-server:3001
       - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:?.env 파일에 JWT_SECRET을 설정하세요}
 
   event-server:
     build: ./event-server
