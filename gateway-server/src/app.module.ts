@@ -12,7 +12,7 @@ import { AppController } from './app.controller';
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: 'my-secret-key',
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1h' },
     }),
     HttpModule,
