@@ -25,13 +25,17 @@ NestJS + MongoDB + JWT + Docker 기반의 이벤트 보상 시스템입니다.
 
 ```bash
 # 1. GitHub에서 레포지토리 클론
-git clone https://github.com/your-name/event-reward-platform.git
+git clone https://github.com/GitHubPSE/event-reward-platform.git
 cd event-reward-platform
 
-# 2. 도커로 모든 서비스 빌드 및 실행
+# 2. 환경변수 파일 생성 후 JWT_SECRET을 임의의 긴 문자열로 변경
+#    (Auth 서버가 토큰을 발급하고 Gateway가 같은 값으로 검증합니다)
+cp .env.example .env
+
+# 3. 도커로 모든 서비스 빌드 및 실행
 docker-compose up --build
 
-# 3.아래 주소에서 각 서비스 확인 가능
+# 4. 아래 주소에서 각 서비스 확인 가능
 1. Auth 서비스 (회원가입, 로그인) : http://localhost:3001 -> "Hello World!" 응답 (정상)
 2. Gateway 서비스 (모든 API 진입점) : http://localhost:3000 -> 404 Not Found` (정상)
 3. Event 서비스 (직접 접근은 차단됨) : http://localhost:3002 -> 비정상 접근입니다 (정상)
